@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, Suspense } from "react";
+import { usePathname } from "next/navigation";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,6 +18,7 @@ export default function Home() {
   const [language, setLanguage] = useState<Language>("ja");
   const [isLoading, setIsLoading] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     // ローディング時間を設定（シーン初期化時間を考慮）
@@ -173,28 +175,44 @@ export default function Home() {
               <nav className="space-y-4">
                 <Link
                   href="/"
-                  className="block text-[rgb(207,157,123)] hover:text-white transition-colors font-primary font-semibold tracking-wider text-lg"
+                  className={`block font-primary font-semibold tracking-wider text-lg transition-colors ${
+                    pathname === "/"
+                      ? "text-white bg-[rgb(207,157,123)] px-3 py-1 rounded"
+                      : "text-[rgb(207,157,123)] hover:text-white"
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   HOME
                 </Link>
                 <Link
                   href="/menu"
-                  className="block text-[rgb(207,157,123)] hover:text-white transition-colors font-primary font-semibold tracking-wider text-lg"
+                  className={`block font-primary font-semibold tracking-wider text-lg transition-colors ${
+                    pathname === "/menu"
+                      ? "text-white bg-[rgb(207,157,123)] px-3 py-1 rounded"
+                      : "text-[rgb(207,157,123)] hover:text-white"
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   MENU
                 </Link>
                 <Link
                   href="/staff"
-                  className="block text-[rgb(207,157,123)] hover:text-white transition-colors font-primary font-semibold tracking-wider text-lg"
+                  className={`block font-primary font-semibold tracking-wider text-lg transition-colors ${
+                    pathname === "/staff"
+                      ? "text-white bg-[rgb(207,157,123)] px-3 py-1 rounded"
+                      : "text-[rgb(207,157,123)] hover:text-white"
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   STAFF
                 </Link>
                 <Link
                   href="/access"
-                  className="block text-[rgb(207,157,123)] hover:text-white transition-colors font-primary font-semibold tracking-wider text-lg"
+                  className={`block font-primary font-semibold tracking-wider text-lg transition-colors ${
+                    pathname === "/access"
+                      ? "text-white bg-[rgb(207,157,123)] px-3 py-1 rounded"
+                      : "text-[rgb(207,157,123)] hover:text-white"
+                  }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   ACCESS
@@ -223,7 +241,7 @@ export default function Home() {
                 alt="Shot Bar Royal Logo"
                 width={600}
                 height={300}
-                className="mx-auto drop-shadow-2xl w-[400px] sm:w-[500px] md:w-[600px] lg:w-[700px] xl:w-[800px] h-auto"
+                className="mx-auto drop-shadow-2xl w-[400px] sm:w-[500px] md:w-[500px] lg:w-[550px] xl:w-[600px] h-auto"
                 priority
               />
             </div>
