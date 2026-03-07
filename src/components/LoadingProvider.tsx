@@ -23,18 +23,13 @@ const LoadingContext = createContext<LoadingContextType>({
 export const useLoading = () => useContext(LoadingContext);
 
 export default function LoadingProvider({ children }: { children: ReactNode }) {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [showOverlay, setShowOverlay] = useState(true);
   const [fadeOut, setFadeOut] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
 
   useEffect(() => {
-    // ローディング表示
-    setShowOverlay(true);
-    setIsLoading(true);
-    setFadeOut(false);
-
     // HOME以外の場合、リダイレクト
     if (pathname !== "/") {
       router.replace("/");
