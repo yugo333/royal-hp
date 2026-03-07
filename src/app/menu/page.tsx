@@ -1,10 +1,9 @@
 "use client";
 
 import { useState, Suspense } from "react";
-import { usePathname } from "next/navigation";
 import Image from "next/image";
-import Link from "next/link";
 import dynamic from "next/dynamic";
+import PageLayout from "@/components/PageLayout";
 
 const MenuScene = dynamic(() => import("@/components/MenuScene"), {
   ssr: false,
@@ -23,8 +22,6 @@ interface MenuItem {
 
 export default function MenuPage() {
   const [language, setLanguage] = useState<Language>("ja");
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const pathname = usePathname();
 
   const cocktails: MenuItem[] = [
     {
@@ -279,495 +276,377 @@ export default function MenuPage() {
   ];
 
   return (
-    <div
-      className="min-h-screen relative w-full overflow-hidden"
-      style={{ backgroundColor: "rgb(22, 33, 39)" }}
-    >
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/MainPic/M2.png"
-          alt="Shot Bar Interior"
-          fill
-          className="object-cover opacity-20"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[rgb(22,33,39)]/80 to-[rgb(22,33,39)]/60" />
-      </div>
-
-      {/* Logo Name - Left Top - Fixed */}
-      <div className="fixed top-3 left-6 md:top-4 md:left-8 z-50">
-        <Link href="/">
+    <PageLayout language={language} setLanguage={setLanguage}>
+      <div
+        className="min-h-screen relative w-full overflow-hidden"
+        style={{ backgroundColor: "rgb(22, 33, 39)" }}
+      >
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
           <Image
-            src="/logo/logoName.png"
-            alt="Shot Bar Royal Logo Name"
-            width={300}
-            height={70}
-            className="w-auto h-16 md:h-20 lg:h-24 drop-shadow-lg hover:opacity-80 transition-opacity"
+            src="/MainPic/M2.png"
+            alt="Shot Bar Interior"
+            fill
+            className="object-cover opacity-20"
             priority
           />
-        </Link>
-      </div>
-
-      {/* Language Toggle - Right Top - Fixed */}
-      <div className="fixed top-8 right-6 md:top-10 md:right-8 z-50">
-        <div className="flex space-x-1 bg-[rgb(22,33,39)]/80 backdrop-blur-sm rounded-full p-1 border border-[rgb(207,157,123)]/30">
-          <button
-            onClick={() => setLanguage("ja")}
-            className={`px-3 py-1 rounded-full text-sm font-secondary font-medium transition-all duration-300 ${
-              language === "ja"
-                ? "bg-[rgb(207,157,123)] text-white"
-                : "text-[rgb(207,157,123)] hover:bg-[rgb(207,157,123)]/20"
-            }`}
-          >
-            JA
-          </button>
-          <button
-            onClick={() => setLanguage("en")}
-            className={`px-3 py-1 rounded-full text-sm font-secondary font-medium transition-all duration-300 ${
-              language === "en"
-                ? "bg-[rgb(207,157,123)] text-white"
-                : "text-[rgb(207,157,123)] hover:bg-[rgb(207,157,123)]/20"
-            }`}
-          >
-            EN
-          </button>
+          <div className="absolute inset-0 bg-gradient-to-b from-[rgb(22,33,39)]/80 to-[rgb(22,33,39)]/60" />
         </div>
-      </div>
 
-      {/* Menu Icon - Right Bottom - Fixed */}
-      <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50">
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="block p-2 transition-all duration-300 transform hover:scale-110"
-        >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            className="w-6 h-6 md:w-7 md:h-7"
+        {/* Hero Section */}
+        <section className="relative h-screen flex items-center justify-center">
+          {/* 3D Scene - 全画面 */}
+          <div className="absolute inset-0 z-0">
+            <Suspense fallback={null}>
+              <MenuScene />
+            </Suspense>
+          </div>
+
+          <div
+            className="absolute inset-0 z-10 flex items-center justify-center text-center backdrop-blur-md"
+            style={{
+              background:
+                "radial-gradient(ellipse 120% 60% at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 40%, transparent 80%)",
+            }}
           >
-            <path
-              d="M3 12h18M3 6h18M3 18h18"
-              stroke="rgb(207,157,123)"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-          </svg>
-        </button>
-      </div>
-
-      {/* Navigation Menu */}
-      {isMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40"
-          onClick={() => setIsMenuOpen(false)}
-        >
-          <div className="absolute bottom-20 right-6 md:bottom-24 md:right-8 bg-[rgb(22,33,39)] border-2 border-[rgb(207,157,123)] rounded-xl p-6 min-w-[180px] shadow-2xl">
-            <nav className="space-y-4">
-              <Link
-                href="/"
-                className={`block font-primary font-semibold tracking-wider text-lg transition-colors ${
-                  pathname === "/"
-                    ? "text-white bg-[rgb(207,157,123)] px-3 py-1 rounded"
-                    : "text-[rgb(207,157,123)] hover:text-white"
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                HOME
-              </Link>
-              <Link
-                href="/menu"
-                className={`block font-primary font-semibold tracking-wider text-lg transition-colors ${
-                  pathname === "/menu"
-                    ? "text-white bg-[rgb(207,157,123)] px-3 py-1 rounded"
-                    : "text-[rgb(207,157,123)] hover:text-white"
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
+            <div className="px-8 py-6">
+              <h1 className="text-[rgb(207,157,123)] font-primary text-5xl md:text-7xl tracking-[0.3em] mb-4 drop-shadow-lg">
                 MENU
-              </Link>
-              <Link
-                href="/staff"
-                className={`block font-primary font-semibold tracking-wider text-lg transition-colors ${
-                  pathname === "/staff"
-                    ? "text-white bg-[rgb(207,157,123)] px-3 py-1 rounded"
-                    : "text-[rgb(207,157,123)] hover:text-white"
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                STAFF
-              </Link>
-              <Link
-                href="/access"
-                className={`block font-primary font-semibold tracking-wider text-lg transition-colors ${
-                  pathname === "/access"
-                    ? "text-white bg-[rgb(207,157,123)] px-3 py-1 rounded"
-                    : "text-[rgb(207,157,123)] hover:text-white"
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                ACCESS
-              </Link>
-            </nav>
+              </h1>
+              <p className="text-[rgb(207,157,123)] font-secondary text-lg max-w-2xl mx-auto leading-relaxed opacity-90">
+                {language === "ja"
+                  ? "厳選された食材と最高のお酒で、特別な時間をお過ごしください"
+                  : "Experience exceptional moments with carefully selected ingredients and finest spirits"}
+              </p>
+            </div>
           </div>
+        </section>
+
+        {/* Menu Sections */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 py-20">
+          {/* Cocktails Section */}
+          <section className="mb-24">
+            <div className="flex flex-col lg:flex-row gap-8 items-center">
+              <div className="w-full lg:w-1/2">
+                <h2 className="text-[rgb(207,157,123)] font-primary text-4xl mb-8 tracking-[0.2em] text-center lg:text-left drop-shadow-lg">
+                  COCKTAILS
+                </h2>
+                <div className="space-y-4">
+                  {cocktails.map((item, index) => (
+                    <div
+                      key={index}
+                      className="bg-[rgb(22,33,39)]/80 backdrop-blur-sm border border-[rgb(207,157,123)]/30 rounded-lg p-4 hover:bg-[rgb(207,157,123)]/5 transition-all duration-300"
+                    >
+                      <div className="flex justify-between items-start mb-1">
+                        <h3 className="text-[rgb(207,157,123)] font-primary text-lg tracking-wide">
+                          {language === "ja" ? item.nameJa : item.nameEn}
+                        </h3>
+                        <span className="text-[rgb(207,157,123)] font-primary text-lg">
+                          {item.price}
+                        </span>
+                      </div>
+                      <p className="text-[rgb(207,157,123)]/70 font-secondary text-xs">
+                        {language === "ja"
+                          ? item.descriptionJa
+                          : item.descriptionEn}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="w-full lg:w-1/2">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-[rgb(207,157,123)]/10 transform rotate-3"></div>
+                  <Image
+                    src="/MainPic/M2.png"
+                    alt="Cocktails"
+                    width={500}
+                    height={600}
+                    className="relative z-10 w-full h-96 object-cover drop-shadow-lg"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Shots Section */}
+          <section className="mb-24">
+            <div className="flex flex-col lg:flex-row-reverse gap-8 items-center">
+              <div className="w-full lg:w-1/2">
+                <h2 className="text-[rgb(207,157,123)] font-primary text-4xl mb-8 tracking-[0.2em] text-center lg:text-left drop-shadow-lg">
+                  SHOTS
+                </h2>
+                <div className="space-y-4">
+                  {shots.map((item, index) => (
+                    <div
+                      key={index}
+                      className="bg-[rgb(22,33,39)]/80 backdrop-blur-sm border border-[rgb(207,157,123)]/30 rounded-lg p-4 hover:bg-[rgb(207,157,123)]/5 transition-all duration-300"
+                    >
+                      <div className="flex justify-between items-start mb-1">
+                        <h3 className="text-[rgb(207,157,123)] font-primary text-lg tracking-wide">
+                          {language === "ja" ? item.nameJa : item.nameEn}
+                        </h3>
+                        <span className="text-[rgb(207,157,123)] font-primary text-lg">
+                          {item.price}
+                        </span>
+                      </div>
+                      <p className="text-[rgb(207,157,123)]/70 font-secondary text-xs">
+                        {language === "ja"
+                          ? item.descriptionJa
+                          : item.descriptionEn}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="w-full lg:w-1/2">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-[rgb(207,157,123)]/10 transform -rotate-3"></div>
+                  <Image
+                    src="/MainPic/M3.png"
+                    alt="Shots"
+                    width={500}
+                    height={600}
+                    className="relative z-10 w-full h-96 object-cover drop-shadow-lg"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Whisky Section */}
+          <section className="mb-24">
+            <div className="flex flex-col lg:flex-row gap-8 items-center">
+              <div className="w-full lg:w-1/2">
+                <h2 className="text-[rgb(207,157,123)] font-primary text-4xl mb-8 tracking-[0.2em] text-center lg:text-left drop-shadow-lg">
+                  WHISKY
+                </h2>
+                <div className="space-y-4">
+                  {whisky.map((item, index) => (
+                    <div
+                      key={index}
+                      className="bg-[rgb(22,33,39)]/80 backdrop-blur-sm border border-[rgb(207,157,123)]/30 rounded-lg p-4 hover:bg-[rgb(207,157,123)]/5 transition-all duration-300"
+                    >
+                      <div className="flex justify-between items-start mb-1">
+                        <h3 className="text-[rgb(207,157,123)] font-primary text-lg tracking-wide">
+                          {language === "ja" ? item.nameJa : item.nameEn}
+                        </h3>
+                        <span className="text-[rgb(207,157,123)] font-primary text-lg">
+                          {item.price}
+                        </span>
+                      </div>
+                      <p className="text-[rgb(207,157,123)]/70 font-secondary text-xs">
+                        {language === "ja"
+                          ? item.descriptionJa
+                          : item.descriptionEn}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="w-full lg:w-1/2">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-[rgb(207,157,123)]/10 transform rotate-3"></div>
+                  <Image
+                    src="/MainPic/M4.png"
+                    alt="Whisky"
+                    width={500}
+                    height={600}
+                    className="relative z-10 w-full h-96 object-cover drop-shadow-lg"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Beer & Bottle Drink Section */}
+          <section className="mb-24">
+            <div className="flex flex-col lg:flex-row-reverse gap-8 items-center">
+              <div className="w-full lg:w-1/2">
+                <h2 className="text-[rgb(207,157,123)] font-primary text-4xl mb-8 tracking-[0.2em] text-center lg:text-left drop-shadow-lg">
+                  BEER & BOTTLE
+                </h2>
+                <div className="space-y-4">
+                  {beerBottle.map((item, index) => (
+                    <div
+                      key={index}
+                      className="bg-[rgb(22,33,39)]/80 backdrop-blur-sm border border-[rgb(207,157,123)]/30 rounded-lg p-4 hover:bg-[rgb(207,157,123)]/5 transition-all duration-300"
+                    >
+                      <div className="flex justify-between items-start mb-1">
+                        <h3 className="text-[rgb(207,157,123)] font-primary text-lg tracking-wide">
+                          {language === "ja" ? item.nameJa : item.nameEn}
+                        </h3>
+                        <span className="text-[rgb(207,157,123)] font-primary text-lg">
+                          {item.price}
+                        </span>
+                      </div>
+                      <p className="text-[rgb(207,157,123)]/70 font-secondary text-xs">
+                        {language === "ja"
+                          ? item.descriptionJa
+                          : item.descriptionEn}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="w-full lg:w-1/2">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-[rgb(207,157,123)]/10 transform -rotate-3"></div>
+                  <Image
+                    src="/MainPic/M1.png"
+                    alt="Beer & Bottle"
+                    width={500}
+                    height={600}
+                    className="relative z-10 w-full h-96 object-cover drop-shadow-lg"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Brandy Section */}
+          <section className="mb-24">
+            <div className="flex flex-col lg:flex-row gap-8 items-center">
+              <div className="w-full lg:w-1/2">
+                <h2 className="text-[rgb(207,157,123)] font-primary text-4xl mb-8 tracking-[0.2em] text-center lg:text-left drop-shadow-lg">
+                  BRANDY
+                </h2>
+                <div className="space-y-4">
+                  {brandy.map((item, index) => (
+                    <div
+                      key={index}
+                      className="bg-[rgb(22,33,39)]/80 backdrop-blur-sm border border-[rgb(207,157,123)]/30 rounded-lg p-4 hover:bg-[rgb(207,157,123)]/5 transition-all duration-300"
+                    >
+                      <div className="flex justify-between items-start mb-1">
+                        <h3 className="text-[rgb(207,157,123)] font-primary text-lg tracking-wide">
+                          {language === "ja" ? item.nameJa : item.nameEn}
+                        </h3>
+                        <span className="text-[rgb(207,157,123)] font-primary text-lg">
+                          {item.price}
+                        </span>
+                      </div>
+                      <p className="text-[rgb(207,157,123)]/70 font-secondary text-xs">
+                        {language === "ja"
+                          ? item.descriptionJa
+                          : item.descriptionEn}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="w-full lg:w-1/2">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-[rgb(207,157,123)]/10 transform rotate-3"></div>
+                  <Image
+                    src="/MainPic/M2.png"
+                    alt="Brandy"
+                    width={500}
+                    height={600}
+                    className="relative z-10 w-full h-96 object-cover drop-shadow-lg"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Wine & Champagne Section */}
+          <section className="mb-24">
+            <div className="flex flex-col lg:flex-row-reverse gap-8 items-center">
+              <div className="w-full lg:w-1/2">
+                <h2 className="text-[rgb(207,157,123)] font-primary text-4xl mb-8 tracking-[0.2em] text-center lg:text-left drop-shadow-lg">
+                  WINE & CHAMPAGNE
+                </h2>
+                <div className="space-y-4">
+                  {wineChampagne.map((item, index) => (
+                    <div
+                      key={index}
+                      className="bg-[rgb(22,33,39)]/80 backdrop-blur-sm border border-[rgb(207,157,123)]/30 rounded-lg p-4 hover:bg-[rgb(207,157,123)]/5 transition-all duration-300"
+                    >
+                      <div className="flex justify-between items-start mb-1">
+                        <h3 className="text-[rgb(207,157,123)] font-primary text-lg tracking-wide">
+                          {language === "ja" ? item.nameJa : item.nameEn}
+                        </h3>
+                        <span className="text-[rgb(207,157,123)] font-primary text-lg">
+                          {item.price}
+                        </span>
+                      </div>
+                      <p className="text-[rgb(207,157,123)]/70 font-secondary text-xs">
+                        {language === "ja"
+                          ? item.descriptionJa
+                          : item.descriptionEn}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="w-full lg:w-1/2">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-[rgb(207,157,123)]/10 transform -rotate-3"></div>
+                  <Image
+                    src="/MainPic/M3.png"
+                    alt="Wine & Champagne"
+                    width={500}
+                    height={600}
+                    className="relative z-10 w-full h-96 object-cover drop-shadow-lg"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Food Section */}
+          <section className="mb-24">
+            <div className="flex flex-col lg:flex-row gap-8 items-center">
+              <div className="w-full lg:w-1/2">
+                <h2 className="text-[rgb(207,157,123)] font-primary text-4xl mb-8 tracking-[0.2em] text-center lg:text-left drop-shadow-lg">
+                  FOOD
+                </h2>
+                <div className="space-y-4">
+                  {food.map((item, index) => (
+                    <div
+                      key={index}
+                      className="bg-[rgb(22,33,39)]/80 backdrop-blur-sm border border-[rgb(207,157,123)]/30 rounded-lg p-4 hover:bg-[rgb(207,157,123)]/5 transition-all duration-300"
+                    >
+                      <div className="flex justify-between items-start mb-1">
+                        <h3 className="text-[rgb(207,157,123)] font-primary text-lg tracking-wide">
+                          {language === "ja" ? item.nameJa : item.nameEn}
+                        </h3>
+                        <span className="text-[rgb(207,157,123)] font-primary text-lg">
+                          {item.price}
+                        </span>
+                      </div>
+                      <p className="text-[rgb(207,157,123)]/70 font-secondary text-xs">
+                        {language === "ja"
+                          ? item.descriptionJa
+                          : item.descriptionEn}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="w-full lg:w-1/2">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-[rgb(207,157,123)]/10 transform rotate-3"></div>
+                  <Image
+                    src="/MainPic/M4.png"
+                    alt="Food"
+                    width={500}
+                    height={600}
+                    className="relative z-10 w-full h-96 object-cover drop-shadow-lg"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
-      )}
-
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center">
-        {/* 3D Scene - 全画面 */}
-        <div className="absolute inset-0 z-0">
-          <Suspense fallback={null}>
-            <MenuScene />
-          </Suspense>
-        </div>
-
-        <div
-          className="absolute inset-0 z-10 flex items-center justify-center text-center backdrop-blur-md"
-          style={{
-            background:
-              "radial-gradient(ellipse 120% 60% at center, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 40%, transparent 80%)",
-          }}
-        >
-          <div className="px-8 py-6">
-            <h1 className="text-[rgb(207,157,123)] font-primary text-5xl md:text-7xl tracking-[0.3em] mb-4 drop-shadow-lg">
-              MENU
-            </h1>
-            <p className="text-[rgb(207,157,123)] font-secondary text-lg max-w-2xl mx-auto leading-relaxed opacity-90">
-              {language === "ja"
-                ? "厳選された食材と最高のお酒で、特別な時間をお過ごしください"
-                : "Experience exceptional moments with carefully selected ingredients and finest spirits"}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Menu Sections */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8 py-20">
-        {/* Cocktails Section */}
-        <section className="mb-24">
-          <div className="flex flex-col lg:flex-row gap-8 items-center">
-            <div className="w-full lg:w-1/2">
-              <h2 className="text-[rgb(207,157,123)] font-primary text-4xl mb-8 tracking-[0.2em] text-center lg:text-left drop-shadow-lg">
-                COCKTAILS
-              </h2>
-              <div className="space-y-4">
-                {cocktails.map((item, index) => (
-                  <div
-                    key={index}
-                    className="bg-[rgb(22,33,39)]/80 backdrop-blur-sm border border-[rgb(207,157,123)]/30 rounded-lg p-4 hover:bg-[rgb(207,157,123)]/5 transition-all duration-300"
-                  >
-                    <div className="flex justify-between items-start mb-1">
-                      <h3 className="text-[rgb(207,157,123)] font-primary text-lg tracking-wide">
-                        {language === "ja" ? item.nameJa : item.nameEn}
-                      </h3>
-                      <span className="text-[rgb(207,157,123)] font-primary text-lg">
-                        {item.price}
-                      </span>
-                    </div>
-                    <p className="text-[rgb(207,157,123)]/70 font-secondary text-xs">
-                      {language === "ja"
-                        ? item.descriptionJa
-                        : item.descriptionEn}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="w-full lg:w-1/2">
-              <div className="relative">
-                <div className="absolute inset-0 bg-[rgb(207,157,123)]/10 transform rotate-3"></div>
-                <Image
-                  src="/MainPic/M2.png"
-                  alt="Cocktails"
-                  width={500}
-                  height={600}
-                  className="relative z-10 w-full h-96 object-cover drop-shadow-lg"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Shots Section */}
-        <section className="mb-24">
-          <div className="flex flex-col lg:flex-row-reverse gap-8 items-center">
-            <div className="w-full lg:w-1/2">
-              <h2 className="text-[rgb(207,157,123)] font-primary text-4xl mb-8 tracking-[0.2em] text-center lg:text-left drop-shadow-lg">
-                SHOTS
-              </h2>
-              <div className="space-y-4">
-                {shots.map((item, index) => (
-                  <div
-                    key={index}
-                    className="bg-[rgb(22,33,39)]/80 backdrop-blur-sm border border-[rgb(207,157,123)]/30 rounded-lg p-4 hover:bg-[rgb(207,157,123)]/5 transition-all duration-300"
-                  >
-                    <div className="flex justify-between items-start mb-1">
-                      <h3 className="text-[rgb(207,157,123)] font-primary text-lg tracking-wide">
-                        {language === "ja" ? item.nameJa : item.nameEn}
-                      </h3>
-                      <span className="text-[rgb(207,157,123)] font-primary text-lg">
-                        {item.price}
-                      </span>
-                    </div>
-                    <p className="text-[rgb(207,157,123)]/70 font-secondary text-xs">
-                      {language === "ja"
-                        ? item.descriptionJa
-                        : item.descriptionEn}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="w-full lg:w-1/2">
-              <div className="relative">
-                <div className="absolute inset-0 bg-[rgb(207,157,123)]/10 transform -rotate-3"></div>
-                <Image
-                  src="/MainPic/M3.png"
-                  alt="Shots"
-                  width={500}
-                  height={600}
-                  className="relative z-10 w-full h-96 object-cover drop-shadow-lg"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Whisky Section */}
-        <section className="mb-24">
-          <div className="flex flex-col lg:flex-row gap-8 items-center">
-            <div className="w-full lg:w-1/2">
-              <h2 className="text-[rgb(207,157,123)] font-primary text-4xl mb-8 tracking-[0.2em] text-center lg:text-left drop-shadow-lg">
-                WHISKY
-              </h2>
-              <div className="space-y-4">
-                {whisky.map((item, index) => (
-                  <div
-                    key={index}
-                    className="bg-[rgb(22,33,39)]/80 backdrop-blur-sm border border-[rgb(207,157,123)]/30 rounded-lg p-4 hover:bg-[rgb(207,157,123)]/5 transition-all duration-300"
-                  >
-                    <div className="flex justify-between items-start mb-1">
-                      <h3 className="text-[rgb(207,157,123)] font-primary text-lg tracking-wide">
-                        {language === "ja" ? item.nameJa : item.nameEn}
-                      </h3>
-                      <span className="text-[rgb(207,157,123)] font-primary text-lg">
-                        {item.price}
-                      </span>
-                    </div>
-                    <p className="text-[rgb(207,157,123)]/70 font-secondary text-xs">
-                      {language === "ja"
-                        ? item.descriptionJa
-                        : item.descriptionEn}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="w-full lg:w-1/2">
-              <div className="relative">
-                <div className="absolute inset-0 bg-[rgb(207,157,123)]/10 transform rotate-3"></div>
-                <Image
-                  src="/MainPic/M4.png"
-                  alt="Whisky"
-                  width={500}
-                  height={600}
-                  className="relative z-10 w-full h-96 object-cover drop-shadow-lg"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Beer & Bottle Drink Section */}
-        <section className="mb-24">
-          <div className="flex flex-col lg:flex-row-reverse gap-8 items-center">
-            <div className="w-full lg:w-1/2">
-              <h2 className="text-[rgb(207,157,123)] font-primary text-4xl mb-8 tracking-[0.2em] text-center lg:text-left drop-shadow-lg">
-                BEER & BOTTLE
-              </h2>
-              <div className="space-y-4">
-                {beerBottle.map((item, index) => (
-                  <div
-                    key={index}
-                    className="bg-[rgb(22,33,39)]/80 backdrop-blur-sm border border-[rgb(207,157,123)]/30 rounded-lg p-4 hover:bg-[rgb(207,157,123)]/5 transition-all duration-300"
-                  >
-                    <div className="flex justify-between items-start mb-1">
-                      <h3 className="text-[rgb(207,157,123)] font-primary text-lg tracking-wide">
-                        {language === "ja" ? item.nameJa : item.nameEn}
-                      </h3>
-                      <span className="text-[rgb(207,157,123)] font-primary text-lg">
-                        {item.price}
-                      </span>
-                    </div>
-                    <p className="text-[rgb(207,157,123)]/70 font-secondary text-xs">
-                      {language === "ja"
-                        ? item.descriptionJa
-                        : item.descriptionEn}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="w-full lg:w-1/2">
-              <div className="relative">
-                <div className="absolute inset-0 bg-[rgb(207,157,123)]/10 transform -rotate-3"></div>
-                <Image
-                  src="/MainPic/M1.png"
-                  alt="Beer & Bottle"
-                  width={500}
-                  height={600}
-                  className="relative z-10 w-full h-96 object-cover drop-shadow-lg"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Brandy Section */}
-        <section className="mb-24">
-          <div className="flex flex-col lg:flex-row gap-8 items-center">
-            <div className="w-full lg:w-1/2">
-              <h2 className="text-[rgb(207,157,123)] font-primary text-4xl mb-8 tracking-[0.2em] text-center lg:text-left drop-shadow-lg">
-                BRANDY
-              </h2>
-              <div className="space-y-4">
-                {brandy.map((item, index) => (
-                  <div
-                    key={index}
-                    className="bg-[rgb(22,33,39)]/80 backdrop-blur-sm border border-[rgb(207,157,123)]/30 rounded-lg p-4 hover:bg-[rgb(207,157,123)]/5 transition-all duration-300"
-                  >
-                    <div className="flex justify-between items-start mb-1">
-                      <h3 className="text-[rgb(207,157,123)] font-primary text-lg tracking-wide">
-                        {language === "ja" ? item.nameJa : item.nameEn}
-                      </h3>
-                      <span className="text-[rgb(207,157,123)] font-primary text-lg">
-                        {item.price}
-                      </span>
-                    </div>
-                    <p className="text-[rgb(207,157,123)]/70 font-secondary text-xs">
-                      {language === "ja"
-                        ? item.descriptionJa
-                        : item.descriptionEn}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="w-full lg:w-1/2">
-              <div className="relative">
-                <div className="absolute inset-0 bg-[rgb(207,157,123)]/10 transform rotate-3"></div>
-                <Image
-                  src="/MainPic/M2.png"
-                  alt="Brandy"
-                  width={500}
-                  height={600}
-                  className="relative z-10 w-full h-96 object-cover drop-shadow-lg"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Wine & Champagne Section */}
-        <section className="mb-24">
-          <div className="flex flex-col lg:flex-row-reverse gap-8 items-center">
-            <div className="w-full lg:w-1/2">
-              <h2 className="text-[rgb(207,157,123)] font-primary text-4xl mb-8 tracking-[0.2em] text-center lg:text-left drop-shadow-lg">
-                WINE & CHAMPAGNE
-              </h2>
-              <div className="space-y-4">
-                {wineChampagne.map((item, index) => (
-                  <div
-                    key={index}
-                    className="bg-[rgb(22,33,39)]/80 backdrop-blur-sm border border-[rgb(207,157,123)]/30 rounded-lg p-4 hover:bg-[rgb(207,157,123)]/5 transition-all duration-300"
-                  >
-                    <div className="flex justify-between items-start mb-1">
-                      <h3 className="text-[rgb(207,157,123)] font-primary text-lg tracking-wide">
-                        {language === "ja" ? item.nameJa : item.nameEn}
-                      </h3>
-                      <span className="text-[rgb(207,157,123)] font-primary text-lg">
-                        {item.price}
-                      </span>
-                    </div>
-                    <p className="text-[rgb(207,157,123)]/70 font-secondary text-xs">
-                      {language === "ja"
-                        ? item.descriptionJa
-                        : item.descriptionEn}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="w-full lg:w-1/2">
-              <div className="relative">
-                <div className="absolute inset-0 bg-[rgb(207,157,123)]/10 transform -rotate-3"></div>
-                <Image
-                  src="/MainPic/M3.png"
-                  alt="Wine & Champagne"
-                  width={500}
-                  height={600}
-                  className="relative z-10 w-full h-96 object-cover drop-shadow-lg"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Food Section */}
-        <section className="mb-24">
-          <div className="flex flex-col lg:flex-row gap-8 items-center">
-            <div className="w-full lg:w-1/2">
-              <h2 className="text-[rgb(207,157,123)] font-primary text-4xl mb-8 tracking-[0.2em] text-center lg:text-left drop-shadow-lg">
-                FOOD
-              </h2>
-              <div className="space-y-4">
-                {food.map((item, index) => (
-                  <div
-                    key={index}
-                    className="bg-[rgb(22,33,39)]/80 backdrop-blur-sm border border-[rgb(207,157,123)]/30 rounded-lg p-4 hover:bg-[rgb(207,157,123)]/5 transition-all duration-300"
-                  >
-                    <div className="flex justify-between items-start mb-1">
-                      <h3 className="text-[rgb(207,157,123)] font-primary text-lg tracking-wide">
-                        {language === "ja" ? item.nameJa : item.nameEn}
-                      </h3>
-                      <span className="text-[rgb(207,157,123)] font-primary text-lg">
-                        {item.price}
-                      </span>
-                    </div>
-                    <p className="text-[rgb(207,157,123)]/70 font-secondary text-xs">
-                      {language === "ja"
-                        ? item.descriptionJa
-                        : item.descriptionEn}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="w-full lg:w-1/2">
-              <div className="relative">
-                <div className="absolute inset-0 bg-[rgb(207,157,123)]/10 transform rotate-3"></div>
-                <Image
-                  src="/MainPic/M4.png"
-                  alt="Food"
-                  width={500}
-                  height={600}
-                  className="relative z-10 w-full h-96 object-cover drop-shadow-lg"
-                />
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
-    </div>
+    </PageLayout>
   );
 }
