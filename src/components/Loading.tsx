@@ -14,6 +14,8 @@ export default function Loading() {
             width={480}
             height={480}
             className="opacity-80"
+            style={{ width: "auto", height: "auto" }}
+            priority
           />
         </div>
 

@@ -17,23 +17,19 @@ export default function Home() {
   const [language, setLanguage] = useState<"ja" | "en">("ja");
 
   useEffect(() => {
-    // ローディング時間を設定（シーン初期化時間を考慮）
-    const timer = setTimeout(() => {
+    // HOMEページのローディング完了チェック（Providerとは別）
+    if (sessionStorage.getItem("home-loaded") === "1") {
       setIsLoading(false);
-    }, 4000); // 4秒のローディング時間（長めに設定）
-
-    return () => clearTimeout(timer);
+    } else {
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   return (
     <PageLayout language={language} setLanguage={setLanguage}>
-      {/* 全画面オーバーレイローディング */}
-      {isLoading && (
-        <div className="fixed inset-0 z-50">
-          <Loading />
-        </div>
-      )}
-
       <div
         className="min-h-screen relative w-full overflow-hidden"
         style={{ backgroundColor: "rgb(22, 33, 39)" }}
@@ -120,6 +116,7 @@ export default function Home() {
                 width={600}
                 height={300}
                 className="mx-auto drop-shadow-2xl w-[400px] sm:w-[500px] md:w-[500px] lg:w-[550px] xl:w-[600px] h-auto"
+                style={{ width: "auto", height: "auto" }}
                 priority
               />
             </div>

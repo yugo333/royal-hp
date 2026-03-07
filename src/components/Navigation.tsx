@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,6 +15,7 @@ interface NavigationProps {
 export default function Navigation({ language, setLanguage }: NavigationProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
     <>
@@ -89,50 +90,58 @@ export default function Navigation({ language, setLanguage }: NavigationProps) {
         >
           <div className="absolute bottom-20 right-6 md:bottom-24 md:right-8 bg-[rgb(22,33,39)] border-2 border-[rgb(207,157,123)] rounded-xl p-6 min-w-[180px] shadow-2xl">
             <nav className="space-y-4">
-              <Link
-                href="/"
-                className={`block font-primary font-semibold tracking-wider text-lg transition-colors ${
+              <button
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  router.push("/");
+                }}
+                className={`block w-full text-left font-primary font-semibold tracking-wider text-lg transition-colors ${
                   pathname === "/"
                     ? "text-white bg-[rgb(207,157,123)] px-3 py-1 rounded"
                     : "text-[rgb(207,157,123)] hover:text-white"
                 }`}
-                onClick={() => setIsMenuOpen(false)}
               >
                 HOME
-              </Link>
-              <Link
-                href="/menu"
-                className={`block font-primary font-semibold tracking-wider text-lg transition-colors ${
+              </button>
+              <button
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  router.push("/menu");
+                }}
+                className={`block w-full text-left font-primary font-semibold tracking-wider text-lg transition-colors ${
                   pathname === "/menu"
                     ? "text-white bg-[rgb(207,157,123)] px-3 py-1 rounded"
                     : "text-[rgb(207,157,123)] hover:text-white"
                 }`}
-                onClick={() => setIsMenuOpen(false)}
               >
                 MENU
-              </Link>
-              <Link
-                href="/staff"
-                className={`block font-primary font-semibold tracking-wider text-lg transition-colors ${
+              </button>
+              <button
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  router.push("/staff");
+                }}
+                className={`block w-full text-left font-primary font-semibold tracking-wider text-lg transition-colors ${
                   pathname === "/staff"
                     ? "text-white bg-[rgb(207,157,123)] px-3 py-1 rounded"
                     : "text-[rgb(207,157,123)] hover:text-white"
                 }`}
-                onClick={() => setIsMenuOpen(false)}
               >
                 STAFF
-              </Link>
-              <Link
-                href="/access"
-                className={`block font-primary font-semibold tracking-wider text-lg transition-colors ${
+              </button>
+              <button
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  router.push("/access");
+                }}
+                className={`block w-full text-left font-primary font-semibold tracking-wider text-lg transition-colors ${
                   pathname === "/access"
                     ? "text-white bg-[rgb(207,157,123)] px-3 py-1 rounded"
                     : "text-[rgb(207,157,123)] hover:text-white"
                 }`}
-                onClick={() => setIsMenuOpen(false)}
               >
                 ACCESS
-              </Link>
+              </button>
             </nav>
           </div>
         </div>
