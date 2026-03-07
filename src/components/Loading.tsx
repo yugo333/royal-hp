@@ -2,21 +2,28 @@
 
 import Image from "next/image";
 
-export default function Loading() {
+export default function Loading({ fadeOut = false }: { fadeOut?: boolean }) {
   return (
-    <div className="w-full h-full bg-[rgb(22,33,39)] flex items-center justify-center">
+    <div className="w-full h-full bg-[rgb(22,33,39)] flex items-center justify-center overflow-hidden">
       <div className="relative">
-        {/* ゆっくり回転するローディング画像 */}
-        <div className="animate-slow-spin">
-          <Image
-            src="/SubPic/S2.png"
-            alt="Loading..."
-            width={480}
-            height={480}
-            className="opacity-80"
-            style={{ width: "auto", height: "auto" }}
-            priority
-          />
+        {/* 外側でスケール制御 */}
+        <div
+          className={`transition-transform duration-[3000ms] ease-out ${
+            fadeOut ? "scale-[10]" : "scale-100"
+          }`}
+        >
+          {/* 内側で回転制御 */}
+          <div className="animate-slow-spin">
+            <Image
+              src="/SubPic/S2.png"
+              alt="Loading..."
+              width={480}
+              height={480}
+              className="opacity-80"
+              style={{ width: "auto", height: "auto" }}
+              priority
+            />
+          </div>
         </div>
 
         {/* カスタムアニメーション用のスタイル */}
