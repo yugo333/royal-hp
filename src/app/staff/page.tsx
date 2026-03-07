@@ -3,8 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import PageLayout from "@/components/PageLayout";
-
-type Language = "ja" | "en";
+import { useLanguage } from "@/components/LanguageContext";
 
 interface StaffMember {
   name: string;
@@ -16,7 +15,7 @@ interface StaffMember {
 }
 
 export default function StaffPage() {
-  const [language, setLanguage] = useState<Language>("ja");
+  const { language } = useLanguage();
   const [currentStaff, setCurrentStaff] = useState(0);
 
   const staffMembers: StaffMember[] = [
@@ -49,7 +48,7 @@ export default function StaffPage() {
   };
 
   return (
-    <PageLayout language={language} setLanguage={setLanguage}>
+    <PageLayout>
       <div
         className="min-h-screen w-full relative overflow-hidden"
         style={{ backgroundColor: "rgb(22, 33, 39)" }}

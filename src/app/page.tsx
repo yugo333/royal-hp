@@ -13,23 +13,8 @@ const Scene = dynamic(() => import("@/components/Scene"), {
 });
 
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [language, setLanguage] = useState<"ja" | "en">("ja");
-
-  useEffect(() => {
-    // HOMEページのローディング完了チェック（Providerとは別）
-    if (sessionStorage.getItem("home-loaded") === "1") {
-      setIsLoading(false);
-    } else {
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 4000);
-      return () => clearTimeout(timer);
-    }
-  }, []);
-
   return (
-    <PageLayout language={language} setLanguage={setLanguage}>
+    <PageLayout>
       <div
         className="min-h-screen relative w-full overflow-hidden"
         style={{ backgroundColor: "rgb(22, 33, 39)" }}

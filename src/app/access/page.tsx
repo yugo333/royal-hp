@@ -2,14 +2,13 @@
 
 import { useState } from "react";
 import PageLayout from "@/components/PageLayout";
-
-type Language = "ja" | "en";
+import { useLanguage } from "@/components/LanguageContext";
 
 export default function AccessPage() {
-  const [language, setLanguage] = useState<Language>("ja");
+  const { language } = useLanguage();
 
   return (
-    <PageLayout language={language} setLanguage={setLanguage}>
+    <PageLayout>
       <div
         className="min-h-screen relative w-full overflow-hidden"
         style={{ backgroundColor: "rgb(22, 33, 39)" }}

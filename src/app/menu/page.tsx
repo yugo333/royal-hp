@@ -4,13 +4,12 @@ import { useState, Suspense } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import PageLayout from "@/components/PageLayout";
+import { useLanguage } from "@/components/LanguageContext";
 
 const MenuScene = dynamic(() => import("@/components/MenuScene"), {
   ssr: false,
   loading: () => null,
 });
-
-type Language = "ja" | "en";
 
 interface MenuItem {
   nameJa: string;
@@ -21,7 +20,7 @@ interface MenuItem {
 }
 
 export default function MenuPage() {
-  const [language, setLanguage] = useState<Language>("ja");
+  const { language } = useLanguage();
 
   const cocktails: MenuItem[] = [
     {
@@ -276,7 +275,7 @@ export default function MenuPage() {
   ];
 
   return (
-    <PageLayout language={language} setLanguage={setLanguage}>
+    <PageLayout>
       <div
         className="min-h-screen relative w-full overflow-hidden"
         style={{ backgroundColor: "rgb(22, 33, 39)" }}

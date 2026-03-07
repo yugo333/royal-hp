@@ -4,18 +4,13 @@ import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import { useLanguage } from "@/components/LanguageContext";
 
-type Language = "ja" | "en";
-
-interface NavigationProps {
-  language: Language;
-  setLanguage: (lang: Language) => void;
-}
-
-export default function Navigation({ language, setLanguage }: NavigationProps) {
+export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
+  const { language, setLanguage } = useLanguage();
 
   return (
     <>

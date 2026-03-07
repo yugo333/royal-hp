@@ -3,6 +3,7 @@ import { Crimson_Text, Inter } from "next/font/google";
 // @ts-expect-error Next.js のグローバルCSS副作用importをTypeScript上で一時的に許可
 import "./globals.css";
 import LoadingProvider from "@/components/LoadingProvider";
+import { LanguageProvider } from "@/components/LanguageContext";
 
 const crimsonText = Crimson_Text({
   subsets: ["latin"],
@@ -28,7 +29,9 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${crimsonText.variable} ${inter.variable} font-sans`}>
-        <LoadingProvider>{children}</LoadingProvider>
+        <LanguageProvider>
+          <LoadingProvider>{children}</LoadingProvider>
+        </LanguageProvider>
       </body>
     </html>
   );
