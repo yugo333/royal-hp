@@ -109,7 +109,7 @@ export default function AccessPage() {
                 <div className="flex-grow flex flex-col">
                   <div className="aspect-video rounded-lg overflow-hidden border border-[rgb(207,157,123)]/20 flex-grow">
                     <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3242.766!2d139.855!3d35.664!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDM5JzUwLjQiTiAxMznCsDUxJzE4LjAiRQ!5e0!3m2!1sja!2sjp!4v1640000000000!5m2!1sja!2sjp&q=Shot+Bar+Royal,+3-15-10+Nishikasai,+Edogawa,+Tokyo"
+                      src="https://www.google.com/maps?q=134-0088+東京都江戸川区西葛西3-15-10+6東栄ビル&output=embed"
                       width="100%"
                       height="100%"
                       style={{ border: 0 }}
@@ -123,7 +123,7 @@ export default function AccessPage() {
 
                   <div className="mt-4">
                     <a
-                      href="https://maps.google.com/?q=35.664000,139.855000"
+                      href="https://www.google.com/maps/search/?api=1&query=東京都江戸川区西葛西3-15-10"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center text-[rgb(207,157,123)] font-secondary text-sm hover:text-white transition-colors"

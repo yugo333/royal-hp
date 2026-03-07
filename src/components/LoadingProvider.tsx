@@ -24,7 +24,7 @@ export const useLoading = () => useContext(LoadingContext);
 
 export default function LoadingProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(false);
-  const [showOverlay, setShowOverlay] = useState(false);
+  const [showOverlay, setShowOverlay] = useState(true);
   const pathname = usePathname();
   const router = useRouter();
 

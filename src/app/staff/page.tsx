@@ -124,6 +124,18 @@ export default function StaffPage() {
             </p>
           </div>
 
+          {/* 中央ロゴ - PC時のみ表示 */}
+          <div className="hidden md:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 items-center justify-center">
+            <Image
+              src="/logo/ROYAL.png"
+              alt="Royal Logo"
+              width={500}
+              height={500}
+              className="opacity-60"
+              style={{ width: "auto", height: "auto" }}
+            />
+          </div>
+
           {/* ナビゲーションドット */}
           <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-3 z-20">
             {staffMembers.map((_, index) => (
