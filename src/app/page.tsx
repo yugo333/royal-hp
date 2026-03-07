@@ -53,29 +53,28 @@ export default function Home() {
             priority
           />
         </div>
-
-        {/* Language Switch */}
-        <div className="absolute top-6 right-6 md:top-8 md:right-8 z-20">
-          <div className="flex space-x-3">
+        {/* Language Toggle - Right Top */}
+        <div className="absolute top-8 right-6 md:top-10 md:right-8 z-20">
+          <div className="flex space-x-1 bg-[rgb(22,33,39)]/80 backdrop-blur-sm rounded-full p-1 border border-[rgb(207,157,123)]/30">
             <button
               onClick={() => setLanguage("ja")}
-              className={`px-3 py-2 md:px-4 md:py-2 rounded-md text-sm md:text-base font-primary font-semibold transition-all duration-300 ${
+              className={`px-3 py-1 rounded-full text-sm font-secondary font-medium transition-all duration-300 ${
                 language === "ja"
-                  ? "bg-[rgb(207,157,123)] text-[rgb(22,33,39)]"
-                  : "text-[rgb(207,157,123)] border-2 border-[rgb(207,157,123)] hover:bg-[rgb(207,157,123)] hover:text-[rgb(22,33,39)]"
+                  ? "bg-[rgb(207,157,123)] text-white"
+                  : "text-[rgb(207,157,123)] hover:bg-[rgb(207,157,123)]/20"
               }`}
             >
-              日本語
+              JA
             </button>
             <button
               onClick={() => setLanguage("en")}
-              className={`px-3 py-2 md:px-4 md:py-2 rounded-md text-sm md:text-base font-primary font-semibold transition-all duration-300 ${
+              className={`px-3 py-1 rounded-full text-sm font-secondary font-medium transition-all duration-300 ${
                 language === "en"
-                  ? "bg-[rgb(207,157,123)] text-[rgb(22,33,39)]"
-                  : "text-[rgb(207,157,123)] border-2 border-[rgb(207,157,123)] hover:bg-[rgb(207,157,123)] hover:text-[rgb(22,33,39)]"
+                  ? "bg-[rgb(207,157,123)] text-white"
+                  : "text-[rgb(207,157,123)] hover:bg-[rgb(207,157,123)]/20"
               }`}
             >
-              English
+              EN
             </button>
           </div>
         </div>
