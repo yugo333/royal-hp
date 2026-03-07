@@ -2,28 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+/* Shot Bar Royal Custom Fonts */
+@layer base {
+  .font-primary {
+    font-family: var(--font-crimson), serif;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  .font-secondary {
+    font-family: var(--font-inter), sans-serif;
   }
 }
 
+:root {
+  --royal-gold: 207, 157, 123;
+  --royal-dark: 22, 33, 39;
+  --royal-light: 255, 255, 255;
+}
+
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  font-family: var(--font-inter), sans-serif;
+  color: rgb(var(--royal-light));
+  background: rgb(var(--royal-dark));
 }
 
 @layer utilities {
