@@ -21,7 +21,7 @@ export default function StaffPage() {
   const staffMembers: StaffMember[] = [
     {
       name: "TERU",
-      image: "/Staff/Teru.png",
+      image: "/Staff/Teru2.png",
       title: {
         ja: "バーテンダー",
         en: "Bartender",
@@ -29,7 +29,7 @@ export default function StaffPage() {
     },
     {
       name: "SOLOMON",
-      image: "/Staff/Solo.png",
+      image: "/Staff/Solo2.png",
       title: {
         ja: "バーテンダー",
         en: "Bartender",
@@ -61,36 +61,22 @@ export default function StaffPage() {
               src={staffMembers[currentStaff].image}
               alt={staffMembers[currentStaff].name}
               fill
-              className="object-cover grayscale object-right md:object-center"
+              className="object-cover grayscale"
               sizes="100vw"
               priority
+              style={{ objectPosition: "right center" }}
             />
             {/* デスクトップ用グラデーション */}
             <div
               className="absolute inset-0 hidden md:block"
               style={{
                 background: `linear-gradient(to right, 
-                  rgba(22, 33, 39, 0.9) 0%, 
-                  rgba(22, 33, 39, 0.85) 8%, 
-                  rgba(22, 33, 39, 0.8) 15%, 
-                  rgba(22, 33, 39, 0.7) 22%, 
-                  rgba(22, 33, 39, 0.6) 28%, 
-                  rgba(22, 33, 39, 0.5) 35%, 
-                  rgba(0, 0, 0, 0.4) 40%, 
-                  rgba(0, 0, 0, 0.6) 44%, 
-                  rgba(0, 0, 0, 0.8) 46%, 
-                  rgba(0, 0, 0, 1.0) 48%, 
-                  rgba(0, 0, 0, 1.0) 52%, 
-                  rgba(0, 0, 0, 0.8) 54%, 
-                  rgba(0, 0, 0, 0.6) 56%, 
-                  rgba(0, 0, 0, 0.4) 60%, 
-                  rgba(22, 33, 39, 0.5) 65%, 
-                  rgba(22, 33, 39, 0.6) 72%, 
-                  rgba(22, 33, 39, 0.5) 78%, 
-                  rgba(22, 33, 39, 0.4) 84%, 
-                  rgba(22, 33, 39, 0.2) 90%, 
-                  rgba(22, 33, 39, 0.1) 95%, 
-                  transparent 100%)`,
+                  rgba(22, 33, 39, 1.0) 0%, 
+                  rgba(22, 33, 39, 1.0) calc(100% - 600px), 
+                  rgba(22, 33, 39, 0.8) calc(100% - 500px), 
+                  rgba(22, 33, 39, 0.5) calc(100% - 450px), 
+                  rgba(22, 33, 39, 0.2) calc(100% - 400px), 
+                  transparent calc(100% - 350px))`,
               }}
             />
             {/* モバイル用グラデーション */}
