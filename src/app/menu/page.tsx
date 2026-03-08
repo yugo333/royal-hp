@@ -317,6 +317,11 @@ export default function MenuPage() {
                   ? "厳選された食材と最高のお酒で、特別な時間をお過ごしください"
                   : "Experience exceptional moments with carefully selected ingredients and finest spirits"}
               </p>
+              <p className="text-[rgb(207,157,123)] font-secondary text-base max-w-2xl mx-auto mt-4 opacity-80">
+                {language === "ja"
+                  ? "テーブルチャージは頂戴しておりません"
+                  : "No table charge"}
+              </p>
             </div>
           </div>
         </section>
@@ -351,6 +356,9 @@ export default function MenuPage() {
                       </p>
                     </div>
                   ))}
+                  <p className="text-[rgb(207,157,123)]/60 font-secondary text-sm text-right mt-4">
+                    etc...
+                  </p>
                 </div>
               </div>
 
@@ -397,6 +405,9 @@ export default function MenuPage() {
                       </p>
                     </div>
                   ))}
+                  <p className="text-[rgb(207,157,123)]/60 font-secondary text-sm text-right mt-4">
+                    etc...
+                  </p>
                 </div>
               </div>
 
@@ -443,6 +454,9 @@ export default function MenuPage() {
                       </p>
                     </div>
                   ))}
+                  <p className="text-[rgb(207,157,123)]/60 font-secondary text-sm text-right mt-4">
+                    etc...
+                  </p>
                 </div>
               </div>
 
@@ -489,6 +503,9 @@ export default function MenuPage() {
                       </p>
                     </div>
                   ))}
+                  <p className="text-[rgb(207,157,123)]/60 font-secondary text-sm text-right mt-4">
+                    etc...
+                  </p>
                 </div>
               </div>
 
@@ -535,6 +552,9 @@ export default function MenuPage() {
                       </p>
                     </div>
                   ))}
+                  <p className="text-[rgb(207,157,123)]/60 font-secondary text-sm text-right mt-4">
+                    etc...
+                  </p>
                 </div>
               </div>
 
@@ -581,6 +601,9 @@ export default function MenuPage() {
                       </p>
                     </div>
                   ))}
+                  <p className="text-[rgb(207,157,123)]/60 font-secondary text-sm text-right mt-4">
+                    etc...
+                  </p>
                 </div>
               </div>
 
@@ -627,6 +650,9 @@ export default function MenuPage() {
                       </p>
                     </div>
                   ))}
+                  <p className="text-[rgb(207,157,123)]/60 font-secondary text-sm text-right mt-4">
+                    etc...
+                  </p>
                 </div>
               </div>
 
