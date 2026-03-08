@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Crimson_Text, Inter } from "next/font/google";
-// @ts-expect-error Next.js のグローバルCSS副作用importをTypeScript上で一時的に許可
 import "./globals.css";
 import LoadingProvider from "@/components/LoadingProvider";
 import { LanguageProvider } from "@/components/LanguageContext";
