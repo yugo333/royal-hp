@@ -58,8 +58,56 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BarOrPub",
+    name: "Shot Bar Royal",
+    image: "https://royal-hp.vercel.app/logo/ROYAL.png",
+    "@id": "https://royal-hp.vercel.app",
+    url: "https://royal-hp.vercel.app",
+    telephone: "+81-3-XXXX-XXXX",
+    priceRange: "¥3000-¥5,000",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "西葛西3-15-10 6東栄ビル",
+      addressLocality: "江戸川区",
+      addressRegion: "東京都",
+      postalCode: "134-0088",
+      addressCountry: "JP",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 35.6645,
+      longitude: 139.8686,
+    },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ],
+        opens: "18:00",
+        closes: "05:00",
+      },
+    ],
+    servesCuisine: "Cocktails & Bar Food",
+    acceptsReservations: "True",
+  };
+
   return (
     <html lang="ja">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={`${crimsonText.variable} ${inter.variable} font-sans`}>
         <LanguageProvider>
           <LoadingProvider>{children}</LoadingProvider>
