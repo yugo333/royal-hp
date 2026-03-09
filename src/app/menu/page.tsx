@@ -24,7 +24,7 @@ export default function MenuPage() {
 
   const cocktails: MenuItem[] = [
     {
-      nameJa: "レッド・プル・ヲッカ",
+      nameJa: "レッド・ブル・ウォッカ",
       nameEn: "Red Bull Vodka",
       descriptionJa: "エナジードリンクとウォッカの組み合わせ",
       descriptionEn: "Energy drink and vodka combination",
