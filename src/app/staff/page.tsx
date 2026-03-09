@@ -21,7 +21,7 @@ export default function StaffPage() {
   const staffMembers: StaffMember[] = [
     {
       name: "TERU",
-      image: "/Staff/Teru2.png",
+      image: "/staff-images/Teru2.png",
       title: {
         ja: "バーテンダー",
         en: "Bartender",
@@ -29,7 +29,7 @@ export default function StaffPage() {
     },
     {
       name: "SOLOMON",
-      image: "/Staff/Solo2.png",
+      image: "/staff-images/Solo2.png",
       title: {
         ja: "バーテンダー",
         en: "Bartender",
