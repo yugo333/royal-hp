@@ -94,7 +94,7 @@ export default function MenuPage() {
       nameEn: "Jäger Bomb",
       descriptionJa: "イエガーとレッドブル",
       descriptionEn: "Jägermeister and Red Bull",
-      price: "¥1,000",
+      price: "¥1,100",
     },
     {
       nameJa: "クエルボ ゴールド",
