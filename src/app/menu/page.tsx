@@ -139,7 +139,7 @@ export default function MenuPage() {
       nameEn: "Wild Turkey",
       descriptionJa: "バーボンウイスキー",
       descriptionEn: "Bourbon whiskey",
-      price: "¥1,100",
+      price: "¥1,000",
     },
     {
       nameJa: "シーバスリーガル",
