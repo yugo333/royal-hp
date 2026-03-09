@@ -91,7 +91,7 @@ export default function Navigation() {
                   router.push("/");
                 }}
                 className={`block w-full text-left font-primary font-semibold tracking-wider text-lg transition-colors ${
-                  pathname === "/"
+                  pathname === "/" || pathname === "/index.html"
                     ? "text-white bg-[rgb(207,157,123)] px-3 py-1 rounded"
                     : "text-[rgb(207,157,123)] hover:text-white"
                 }`}
@@ -104,7 +104,7 @@ export default function Navigation() {
                   router.push("/menu");
                 }}
                 className={`block w-full text-left font-primary font-semibold tracking-wider text-lg transition-colors ${
-                  pathname === "/menu"
+                  pathname === "/menu" || pathname === "/menu/"
                     ? "text-white bg-[rgb(207,157,123)] px-3 py-1 rounded"
                     : "text-[rgb(207,157,123)] hover:text-white"
                 }`}
@@ -117,7 +117,7 @@ export default function Navigation() {
                   router.push("/staff");
                 }}
                 className={`block w-full text-left font-primary font-semibold tracking-wider text-lg transition-colors ${
-                  pathname === "/staff"
+                  pathname === "/staff" || pathname === "/staff/"
                     ? "text-white bg-[rgb(207,157,123)] px-3 py-1 rounded"
                     : "text-[rgb(207,157,123)] hover:text-white"
                 }`}
@@ -130,7 +130,7 @@ export default function Navigation() {
                   router.push("/access");
                 }}
                 className={`block w-full text-left font-primary font-semibold tracking-wider text-lg transition-colors ${
-                  pathname === "/access"
+                  pathname === "/access" || pathname === "/access/"
                     ? "text-white bg-[rgb(207,157,123)] px-3 py-1 rounded"
                     : "text-[rgb(207,157,123)] hover:text-white"
                 }`}
